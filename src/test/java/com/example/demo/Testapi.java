@@ -1,7 +1,10 @@
 package com.example.demo;
 
+import com.example.demo.entity.Credential;
+import com.example.demo.entity.dto.AccountLoginDto;
 import com.example.demo.entity.dto.AccountRegisterDto;
 import com.example.demo.service.AccountService;
+import com.example.demo.util.JwtUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +25,14 @@ public class Testapi {
         accountRegisterDto.setRole(1);
         AccountRegisterDto afterCreate = accountService.register(accountRegisterDto);
         System.out.println(afterCreate);
+    }
+
+    @Test
+    public void login(){
+        AccountLoginDto accountLoginDto = new AccountLoginDto();
+        accountLoginDto.setUsername("quynhanh");
+        accountLoginDto.setPassword("123456");
+        Credential credential = accountService.login(accountLoginDto);
+        System.out.println(credential.toString());
     }
 }
